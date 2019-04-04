@@ -6,8 +6,8 @@
 * [UserAppointmentForm.cs](./CS/WebSite/App_Code/UserAppointmentForm.cs) (VB: [UserAppointmentForm.vb](./VB/WebSite/App_Code/UserAppointmentForm.vb))
 * [UserAppointmentSaveCallbackCommand.cs](./CS/WebSite/App_Code/UserAppointmentSaveCallbackCommand.cs) (VB: [UserAppointmentSaveCallbackCommand.vb](./VB/WebSite/App_Code/UserAppointmentSaveCallbackCommand.vb))
 * [Default.aspx](./CS/WebSite/Default.aspx) (VB: [Default.aspx](./VB/WebSite/Default.aspx))
-* [Default.aspx.cs](./CS/WebSite/Default.aspx.cs) (VB: [Default.aspx](./VB/WebSite/Default.aspx))
-* [UserAppointmentForm.ascx](./CS/WebSite/MyForms/UserAppointmentForm.ascx) (VB: [UserAppointmentForm.ascx.vb](./VB/WebSite/MyForms/UserAppointmentForm.ascx.vb))
+* [Default.aspx.cs](./CS/WebSite/Default.aspx.cs) (VB: [Default.aspx.vb](./VB/WebSite/Default.aspx.vb))
+* [UserAppointmentForm.ascx](./CS/WebSite/MyForms/UserAppointmentForm.ascx) (VB: [UserAppointmentForm.ascx](./VB/WebSite/MyForms/UserAppointmentForm.ascx))
 * [UserAppointmentForm.ascx.cs](./CS/WebSite/MyForms/UserAppointmentForm.ascx.cs) (VB: [UserAppointmentForm.ascx.vb](./VB/WebSite/MyForms/UserAppointmentForm.ascx.vb))
 <!-- default file list end -->
 # How to construct an appointment editing form with custom fields
