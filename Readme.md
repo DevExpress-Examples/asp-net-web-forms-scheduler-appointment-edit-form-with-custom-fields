@@ -11,7 +11,7 @@
 
 This example provides a step-by-step tutorial for simple appointment form customization. You'll learn how to replace a text box used for editing an appointment's subject with a combo box and add an additional text box for editing an appointment's custom field.
 
-To follow this tutorial, create a project in which the [ASPxScheduler](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxScheduler.ASPxScheduler) control is bound to a collection of custom objects: [How to: Bind ASPxScheduler Appointment to ObjectDataSource](xref:15675).
+To follow this tutorial, create a project in which the [ASPxScheduler](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxScheduler.ASPxScheduler) control is bound to a collection of custom objects: [How to: Bind ASPxScheduler Appointment to ObjectDataSource](https://docs.devexpress.com/AspNet/15675/components/scheduler/examples/data-binding/how-to-bind-aspxscheduler-appointment-to-objectdatasource).
 
 Follow the steps below to customize the appointment edit form.
 
@@ -31,10 +31,6 @@ Depending on your requirements, you may need to add mappings at runtime instead.
 
 ```csharp
 ASPxScheduler1.Storage.Appointments.CustomFieldMappings.Add(new AppointmentCustomFieldMapping("ApptCustomInfo", "CustomInfo"));
-```
-
-```vb
-ASPxScheduler1.Storage.Appointments.CustomFieldMappings.Add(New AppointmentCustomFieldMapping("ApptCustomInfo", "CustomInfo"))
 ```
 
 ## Step 3 – Prepare a Custom Appointment Editing Form
@@ -103,21 +99,6 @@ protected override ASPxEditBase[] GetChildEditors() {
 }
 ```
 
-```vb
-Protected Overrides Function GetChildEditors() As ASPxEditBase()
-    Dim edits() As ASPxEditBase = { _ 
-        lblSubject, cbSubject, tbCustomInfo, lblLocation, _
-        tbLocation, lblLabel, edtLabel, lblStartDate, _ 
-        edtStartDate, lblEndDate, edtEndDate, lblStatus, _ 
-        edtStatus, lblAllDay, chkAllDay, lblResource, _
-        edtResource, tbDescription, cbReminder, lblReminder, _
-        ddResource, chkReminder, GetMultiResourceEditor(), edtStartTime, _
-        edtEndTime, cbTimeZone _
-    }
-    Return edits
-End Function
-```
-
 ## Step 6 – Bind the Custom Editors to Data
 In the **DataBind** method of the Edit Appointment form, you can provide values for the new editors based on the properties of the currently edited appointment. Since you use a combo box for editing an appointment's subject, you need to assign a corresponding data source to this combo box as shown below.
 
@@ -142,27 +123,6 @@ public override void DataBind() {
 }
 ```
 
-```vb
-Private Sub BindSubjectCombobox()
-    Dim subjectList As New List(Of String)()
-    subjectList.Add("Meeting")
-    subjectList.Add("Business travel")
-    subjectList.Add("Phone call")
-    cbSubject.DataSource = subjectList
-    cbSubject.DataBind()
-End Sub
-
-Public Overrides Sub DataBind()
-    MyBase.DataBind()
-
-    ' ...
-    BindSubjectCombobox()
-    cbSubject.Value = container.Subject
-    tbCustomInfo.Text = If(container.Appointment.CustomFields("ApptCustomInfo") IsNot Nothing, container.Appointment.CustomFields("ApptCustomInfo").ToString(), "")
-    ' ...
-End Sub
-```
-
 ## Step 7 – Save Editor Values
 To save values of the new editors as corresponding appointment properties, override the default **AppointmentFormSaveCallbackCommand**. Create this command's descendant in the CustomForms folder or in the **App_Code** folder (for websites).
 
@@ -170,15 +130,6 @@ To save values of the new editors as corresponding appointment properties, overr
 public class CustomAppointmentSaveCallbackCommand : AppointmentFormSaveCallbackCommand {
     public CustomAppointmentSaveCallbackCommand(ASPxScheduler control) : base(control) { }
 }
-```
-
-```vb
-Public Class CustomAppointmentSaveCallbackCommand
-    Inherits AppointmentFormSaveCallbackCommand
-    Public Sub New(ByVal control As ASPxScheduler)
-        MyBase.New(control)
-    End Sub
-End Class
 ```
 
 In the overridden **AssignControllerValues** method, assign the values of the new editors to the corresponding properties of the **AppointmentFormController**. Note that your custom code should be placed after you execute the base implementation of the AssignControllerValues method. Otherwise, changes made to standard appointment fields (for example, the **Controller.Subject** field) will be reset with the base implementation.
@@ -193,18 +144,6 @@ protected override void AssignControllerValues() {
     Controller.Subject = cbSubject.Text;
     Controller.CustomInfoField = tbCustomInfo.Text;
 }
-```
-
-```vb
-Protected Overrides Sub AssignControllerValues()
-    MyBase.AssignControllerValues()
-
-    Dim cbSubject As ASPxComboBox = TryCast(FindControlByID("cbSubject"), ASPxComboBox)
-    Dim tbCustomInfo As ASPxTextBox = TryCast(FindControlByID("tbCustomInfo"), ASPxTextBox)
-
-    Controller.Subject = cbSubject.Text
-    Controller.CustomInfoField = tbCustomInfo.Text
-End Sub
 ```
 
 Make a note that the default **FindControlByID** method searches the editor located in the AppointmentFormTemplateContainer's controls collection without taking into account the complex hierarchy of the controls with multiple nesting levels. It is recommended that you also override this method as shown below.
@@ -225,26 +164,6 @@ System.Web.UI.Control FindTemplateControl(System.Web.UI.Control RootControl, str
     return foundedControl;
 }
 ```
-
-```vb
-Protected Overrides Function FindControlByID(ByVal id As String) As System.Web.UI.Control
-    Return FindTemplateControl(TemplateContainer, id)
-End Function
-
-Private Function FindTemplateControl(ByVal RootControl As System.Web.UI.Control, ByVal id As String) As System.Web.UI.Control
-    Dim foundedControl As System.Web.UI.Control = RootControl.FindControl(id)
-    If foundedControl Is Nothing Then
-        For Each item As System.Web.UI.Control In RootControl.Controls
-            foundedControl = FindTemplateControl(item, id)
-                If foundedControl IsNot Nothing Then
-                    Exit For
-                End If
-        Next item
-    End If
-    Return foundedControl
-End Function
-```
-
 
 ## Step 8 – Create a Custom Appointment Form Controller
 In the previous step, the  tbCustomInfo  editor value is saved as an appointment's custom field using the **Controller.CustomInfoField**  property. The default AppointmentFormController class does not contain such a property so you need to manually implement this property in a custom AppointmentFormController class descendant.
@@ -286,58 +205,6 @@ public class CustomAppointmentSaveCallbackCommand : AppointmentFormSaveCallbackC
 }
 ```
 
-```vb
-Public Class CustomAppointmentFormController
-    Inherits AppointmentFormController
-    Public Sub New(ByVal control As ASPxScheduler, ByVal apt As Appointment)
-        MyBase.New(control, apt)
-    End Sub
-
-    ' Provides access to a user-specified value of the custom field.
-    Public Property CustomInfoField() As String
-        Get
-            Return CStr(EditedAppointmentCopy.CustomFields("ApptCustomInfo"))
-        End Get
-        Set(ByVal value As String)
-            EditedAppointmentCopy.CustomFields("ApptCustomInfo") = value
-        End Set
-    End Property
-
-    ' Provides access to an initial value of the custom field.
-    Private Property SourceCustomInfoField() As String
-        Get
-            Return CStr(SourceAppointment.CustomFields("ApptCustomInfo"))
-        End Get
-        Set(ByVal value As String)
-            SourceAppointment.CustomFields("ApptCustomInfo") = value
-        End Set
-    End Property
-
-    ' Checks whether or not an appointment has been modified taking a custom field value into account.
-    Public Overrides Function IsAppointmentChanged() As Boolean
-        Dim isChanged As Boolean = MyBase.IsAppointmentChanged()
-        Return isChanged OrElse SourceCustomInfoField <> CustomInfoField
-    End Function
-End Class
-
-Public Class CustomAppointmentSaveCallbackCommand
-    Inherits AppointmentFormSaveCallbackCommand
-    Public Sub New(ByVal control As ASPxScheduler)
-        MyBase.New(control)
-    End Sub
-
-    Protected Friend Shadows ReadOnly Property Controller() As CustomAppointmentFormController
-        Get
-            Return CType(MyBase.Controller, CustomAppointmentFormController)
-        End Get
-    End Property
-
-    Protected Overrides Function CreateAppointmentFormController(ByVal apt As DevExpress.XtraScheduler.Appointment) As AppointmentFormController
-        Return New CustomAppointmentFormController(Control, apt)
-    End Function
-End Class
-```
-
 ## Step 9 – Execute the Custom Save Command
 Your newly created **CustomAppointmentSaveCallbackCommand** should be executed instead of the default save command whenever a user issues the **Save** command. To accomplish this, handle the [ASPxScheduler.BeforeExecuteCallbackCommand](xref:DevExpress.Web.ASPxScheduler.ASPxScheduler.BeforeExecuteCallbackCommand) event as illustrated below.
 
@@ -349,17 +216,8 @@ protected void ASPxScheduler1_BeforeExecuteCallbackCommand(object sender, DevExp
 }
 ```
 
-```vb
-Protected Sub ASPxScheduler1_BeforeExecuteCallbackCommand(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxScheduler.SchedulerCallbackCommandEventArgs)
-    If e.CommandId = SchedulerCallbackCommandId.AppointmentSave Then
-        e.Command = New CustomAppointmentSaveCallbackCommand(CType(sender, ASPxScheduler))
-    End If
-End Sub
-```
-
 ## Step 10 – Get the Result
 Run the project. Check to see whether or not your custom form is shown when you open an appointment for editing. Fill in the custom fields and see whether or not new values can be saved when clicking **OK**, and then restored with the next opening of the form.
-
 
 ## Files to Review
 
