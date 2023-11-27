@@ -34,10 +34,10 @@ ASPxScheduler1.Storage.Appointments.CustomFieldMappings.Add(new AppointmentCusto
 ```
 
 ## Step 3 – Prepare a Custom Appointment Editing Form
-Create a new folder named "CustomForms". Copy default ASPxScheduler forms and templates to your project site using the ASPxScheduler control's Smart Tag, as described in the [Dialog Forms](xref:15069) article. Locate the **AppointmentForm.ascx** form and the corresponding code&#0045;behind file **AppointmentForm.ascx.cs** (or **AppointmentForm.ascx.vb** if you use Visual Basic) and copy them to the newly created CustomForms folder.
+Create a new folder named "CustomForms". Copy default ASPxScheduler forms and templates to your project site using the ASPxScheduler control's Smart Tag, as described in the [Dialog Forms](https://docs.devexpress.com/AspNet/15069/components/scheduler/visual-elements/aspxscheduler/dialog-forms) article. Locate the **AppointmentForm.ascx** form and the corresponding code&#0045;behind file **AppointmentForm.ascx.cs** (or **AppointmentForm.ascx.vb** if you use Visual Basic) and copy them to the newly created CustomForms folder.
 
 ## Step 4 – Register the Custom Form
-After copying default ASPxScheduler forms and templates into your project, the corresponding paths will be automatically registered using the **OptionsForms** and **OptionsToolTips** properties. Change the [ASPxSchedulerOptionsForms.AppointmentFormTemplateUrl](xref:DevExpress.Web.ASPxScheduler.ASPxSchedulerOptionsForms.AppointmentFormTemplateUrl) property value to the value corresponding to the new location of the form's template &#0045; **~/CustomForms/AppointmentForm.ascx**. You can clear the other paths or keep them for further customization of default templates.
+After copying default ASPxScheduler forms and templates into your project, the corresponding paths will be automatically registered using the **OptionsForms** and **OptionsToolTips** properties. Change the [ASPxSchedulerOptionsForms.AppointmentFormTemplateUrl](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxScheduler.ASPxSchedulerOptionsForms.AppointmentFormTemplateUrl) property value to the value corresponding to the new location of the form's template &#0045; **~/CustomForms/AppointmentForm.ascx**. You can clear the other paths or keep them for further customization of default templates.
 
 ```aspx
 <OptionsForms AppointmentFormTemplateUrl="CustomForms/AppointmentForm.ascx" />
@@ -206,7 +206,7 @@ public class CustomAppointmentSaveCallbackCommand : AppointmentFormSaveCallbackC
 ```
 
 ## Step 9 – Execute the Custom Save Command
-Your newly created **CustomAppointmentSaveCallbackCommand** should be executed instead of the default save command whenever a user issues the **Save** command. To accomplish this, handle the [ASPxScheduler.BeforeExecuteCallbackCommand](xref:DevExpress.Web.ASPxScheduler.ASPxScheduler.BeforeExecuteCallbackCommand) event as illustrated below.
+Your newly created **CustomAppointmentSaveCallbackCommand** should be executed instead of the default save command whenever a user issues the **Save** command. To accomplish this, handle the [ASPxScheduler.BeforeExecuteCallbackCommand](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxScheduler.ASPxScheduler.BeforeExecuteCallbackCommand) event as illustrated below.
 
 ```csharp
 protected void ASPxScheduler1_BeforeExecuteCallbackCommand(object sender, DevExpress.Web.ASPxScheduler.SchedulerCallbackCommandEventArgs e) {
