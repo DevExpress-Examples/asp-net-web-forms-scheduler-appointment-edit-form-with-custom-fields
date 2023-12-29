@@ -5,9 +5,6 @@
 <!-- default badges end -->
 
 # Scheduler for ASP.NET Web Forms - How to customize the appointment edit form for working with custom fields
-<!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/128546049/)**
-<!-- run online end -->
 
 This example provides a step-by-step tutorial for simple appointment form customization. You'll learn how to replace a text box used for editing an appointment's subject with a combo box and add an additional text box for editing an appointment's custom field.
 
