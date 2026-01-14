@@ -1,253 +1,253 @@
-<%@ Control Language="C#" AutoEventWireup="true" Inherits="AppointmentForm" CodeFile="AppointmentForm.ascx.cs" %>
+<%@ Control Language="VB" AutoEventWireup="true" Inherits="AppointmentForm" CodeFile="AppointmentForm.ascx.vb" %>
 
 <%@ Register Assembly="DevExpress.Web.v16.1, Version=16.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 <%@ Register Assembly="DevExpress.Web.ASPxScheduler.v16.1, Version=16.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxScheduler.Controls" TagPrefix="dxsc" %>
 <%@ Register Assembly="DevExpress.Web.ASPxScheduler.v16.1, Version=16.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxScheduler" TagPrefix="dxwschs" %>
 
 <div runat="server" id="ValidationContainer">
-    <table class="dxscAppointmentForm" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %> style="width: 100%; height: 230px;">
-    <tr>
-        <td class="dxscSingleCell">
-            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                <tr>
-                    <td class="dxscLabelCell">
-                        <dx:ASPxLabel ID="lblSubject" runat="server">
-                        </dx:ASPxLabel>
-                    </td>
-                    <td class="dxscControlCell">
-                        <dx:ASPxComboBox ID="cbSubject" runat="server" ValueType="System.String"></dx:ASPxComboBox>
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td class="dxscSingleCell">
-            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                <tr>
-                    <td class="dxscLabelCell">
-                        <dx:ASPxLabel ID="lblCustomInfo" runat="server" Text="Custom info:">
-                        </dx:ASPxLabel>
-                    </td>
-                    <td class="dxscControlCell">
-                        <dx:ASPxTextBox ID="tbCustomInfo" runat="server" Width="100%" />
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr> 
-        <td class="dxscSingleCell">
-            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                <tr>
-                    <td class="dxscLabelCell">
-                        <dx:ASPxLabel ID="lblLocation" runat="server" AssociatedControlID="tbLocation">
-                        </dx:ASPxLabel>
-                    </td>
-                    <td class="dxscControlCell">
-                        <dx:ASPxTextBox ClientInstanceName="_dx" ID="tbLocation" runat="server" Width="100%" Text='<%# ((AppointmentFormTemplateContainer)Container).Appointment.Location %>' />
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td class="dxscSingleCell">
-            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                <tr>
-                    <td class="dxscLabelCell" style="padding-left: 25px;">
-                        <dx:ASPxLabel ID="lblLabel" runat="server" AssociatedControlID="edtLabel">
-                        </dx:ASPxLabel>
-                    </td>
-                    <td class="dxscControlCell">
-                        <dx:ASPxComboBox ClientInstanceName="_dx" ID="edtLabel" runat="server" Width="100%" DataSource='<%# ((AppointmentFormTemplateContainer)Container).LabelDataSource %>' />
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td class="dxscSingleCell">
-            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                <tr>
-                    <td class="dxscLabelCell">
-                        <dx:ASPxLabel ID="lblStartDate" runat="server" AssociatedControlID="edtStartDate" Wrap="false">
-                        </dx:ASPxLabel>
-                    </td>
-                    <td class="dxscControlCell">
-                        <dx:ASPxDateEdit ID="edtStartDate" runat="server" Width="100%" Date='<%# ((AppointmentFormTemplateContainer)Container).Start %>' EditFormat="Date" DateOnError="Undo" AllowNull="false" EnableClientSideAPI="true" >
-                            <ValidationSettings ErrorDisplayMode="ImageWithTooltip" ValidateOnLeave="false" EnableCustomValidation="True" Display="Dynamic"
-                                ValidationGroup="DateValidatoinGroup">
-                            </ValidationSettings>
-                        </dx:ASPxDateEdit>
-                    </td>
-                    <td class="dxscControlCell" id="edtStartTimeLayoutRoot" style="padding-left: 5px;">
-                        <dx:ASPxTimeEdit ID="edtStartTime" runat="server" Width="100%" DateTime='<%# ((AppointmentFormTemplateContainer)Container).Start %>' DateOnError="Undo" AllowNull="false" EnableClientSideAPI="true" >
-                            <ValidationSettings ErrorDisplayMode="ImageWithTooltip" ValidateOnLeave="false" EnableCustomValidation="True" Display="Dynamic"
-                                ValidationGroup="DateValidatoinGroup">
-                            </ValidationSettings>
-                        </dx:ASPxTimeEdit>
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td class="dxscSingleCell">
-            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                <tr>
-                    <td class="dxscLabelCell" style="padding-left: 25px;">
-                        <dx:ASPxLabel runat="server" ID="lblEndDate" Wrap="false" AssociatedControlID="edtEndDate"/>
-                    </td>
-                    <td class="dxscControlCell">
-                        <dx:ASPxDateEdit id="edtEndDate" runat="server" Date='<%# ((AppointmentFormTemplateContainer)Container).End %>' EditFormat="Date" Width="100%" DateOnError="Undo" AllowNull="false" EnableClientSideAPI="true">
-                            <ValidationSettings ErrorDisplayMode="ImageWithTooltip" ValidateOnLeave="false" EnableCustomValidation="True" Display="Dynamic"
-                                ValidationGroup="DateValidatoinGroup">
-                            </ValidationSettings>
-                        </dx:ASPxDateEdit>
-                    </td>
-                    <td class="dxscControlCell" id="edtEndTimeLayoutRoot" style="padding-left: 5px;">
-                        <dx:ASPxTimeEdit ID="edtEndTime" runat="server" Width="100%" DateTime='<%# ((AppointmentFormTemplateContainer)Container).End %>' DateOnError="Undo" AllowNull="false" EnableClientSideAPI="true" HelpTextSettings-PopupMargins-MarginLeft="50">
-                            <ValidationSettings ErrorDisplayMode="ImageWithTooltip" ValidateOnLeave="false" EnableCustomValidation="True" Display="Dynamic"
-                                ValidationGroup="DateValidatoinGroup">
-                            </ValidationSettings>
-                        </dx:ASPxTimeEdit>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-<% if (TimeZonesEnabled) { %>
-    <tr>
-        <td class="dxscSingleCell">
-            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                <tr>
-                    <td class="dxscLabelCell">
-                        <dx:ASPxLabel ID="lblTimeZone" runat="server" AssociatedControlID="edtStatus" Wrap="false">
-                        </dx:ASPxLabel>
-                    </td>
-                    <td class="dxscControlCell">
-                        <dx:ASPxComboBox ClientInstanceName="_dx" ID="cbTimeZone" runat="server" Width="100%"/>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-<% } %>
-    <tr>
-        <td class="dxscSingleCell">
-            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                <tr>
-                    <td class="dxscLabelCell">
-                        <dx:ASPxLabel ID="lblStatus" runat="server" AssociatedControlID="edtStatus" Wrap="false">
-                        </dx:ASPxLabel>
-                    </td>
-                    <td class="dxscControlCell">
-                        <dx:ASPxComboBox ClientInstanceName="_dx" ID="edtStatus" runat="server" Width="100%" DataSource='<%# ((AppointmentFormTemplateContainer)Container).StatusDataSource %>' />
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td class="dxscSingleCell" style="padding-left: 22px;">
-            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                <tr>
-                    <td style="width: 20px; height: 20px;">
-                        <dx:ASPxCheckBox ClientInstanceName="_dx" ID="chkAllDay" runat="server" Checked='<%# ((AppointmentFormTemplateContainer)Container).Appointment.AllDay %>'>
-                        </dx:ASPxCheckBox>
-                    </td>
-                    <td style="padding-left: 2px;">
-                        <dx:ASPxLabel ID="lblAllDay" runat="server" AssociatedControlID="chkAllDay" />
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-<% if(CanShowReminders) { %>
-        <td class="dxscSingleCell">
-<% } else { %>
-        <td class="dxscDoubleCell" colspan="2">
-<% } %>
-            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                <tr>
-                    <td class="dxscLabelCell">
-                        <dx:ASPxLabel ID="lblResource" runat="server" AssociatedControlID="edtResource">
-                        </dx:ASPxLabel>
-                    </td>
-                    <td class="dxscControlCell">
-<% if(ResourceSharing) { %>
-                        <dx:ASPxDropDownEdit id="ddResource" runat="server" Width="100%" ClientInstanceName="ddResource" Enabled='<%# ((AppointmentFormTemplateContainer)Container).CanEditResource %>' AllowUserInput="false">
-                            <DropDownWindowTemplate>
-                                <dx:ASPxListBox id="edtMultiResource" runat="server" width="100%" SelectionMode="CheckColumn" DataSource='<%# ResourceDataSource %>' Border-BorderWidth="0"/>
-                            </DropDownWindowTemplate>
-                        </dx:ASPxDropDownEdit>                        
-<% } else { %>           
-                        <dx:ASPxComboBox ClientInstanceName="_dx" ID="edtResource" runat="server" Width="100%" DataSource='<%# ResourceDataSource %> ' Enabled='<%# ((AppointmentFormTemplateContainer)Container).CanEditResource %>' />
-<% } %>             
-                    </td>
+    <table class="dxscAppointmentForm" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %> style="width: 100%; height: 230px;">
+        <tr>
+            <td class="dxscSingleCell">
+                <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                    <tr>
+                        <td class="dxscLabelCell">
+                            <dx:ASPxLabel ID="lblSubject" runat="server">
+                            </dx:ASPxLabel>
+                        </td>
+                        <td class="dxscControlCell">
+                            <dx:ASPxComboBox ID="cbSubject" runat="server" ValueType="System.String"></dx:ASPxComboBox>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="dxscSingleCell">
+                <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                    <tr>
+                        <td class="dxscLabelCell">
+                            <dx:ASPxLabel ID="lblCustomInfo" runat="server" Text="Custom info:">
+                            </dx:ASPxLabel>
+                        </td>
+                        <td class="dxscControlCell">
+                            <dx:ASPxTextBox ID="tbCustomInfo" runat="server" Width="100%" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="dxscSingleCell">
+                <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                    <tr>
+                        <td class="dxscLabelCell">
+                            <dx:ASPxLabel ID="lblLocation" runat="server" AssociatedControlID="tbLocation">
+                            </dx:ASPxLabel>
+                        </td>
+                        <td class="dxscControlCell">
+                            <dx:ASPxTextBox ClientInstanceName="_dx" ID="tbLocation" runat="server" Width="100%" Text='<%# CType(Container, AppointmentFormTemplateContainer).Appointment.Location %>' />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="dxscSingleCell">
+                <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                    <tr>
+                        <td class="dxscLabelCell" style="padding-left: 25px;">
+                            <dx:ASPxLabel ID="lblLabel" runat="server" AssociatedControlID="edtLabel">
+                            </dx:ASPxLabel>
+                        </td>
+                        <td class="dxscControlCell">
+                            <dx:ASPxComboBox ClientInstanceName="_dx" ID="edtLabel" runat="server" Width="100%" DataSource='<%# CType(Container, AppointmentFormTemplateContainer).LabelDataSource %>' />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="dxscSingleCell">
+                <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                    <tr>
+                        <td class="dxscLabelCell">
+                            <dx:ASPxLabel ID="lblStartDate" runat="server" AssociatedControlID="edtStartDate" Wrap="false">
+                            </dx:ASPxLabel>
+                        </td>
+                        <td class="dxscControlCell">
+                            <dx:ASPxDateEdit ID="edtStartDate" runat="server" Width="100%" Date='<%# CType(Container, AppointmentFormTemplateContainer).Start %>' EditFormat="Date" DateOnError="Undo" AllowNull="false" EnableClientSideAPI="true">
+                                <ValidationSettings ErrorDisplayMode="ImageWithTooltip" ValidateOnLeave="false" EnableCustomValidation="True" Display="Dynamic"
+                                    ValidationGroup="DateValidatoinGroup">
+                                </ValidationSettings>
+                            </dx:ASPxDateEdit>
+                        </td>
+                        <td class="dxscControlCell" id="edtStartTimeLayoutRoot" style="padding-left: 5px;">
+                            <dx:ASPxTimeEdit ID="edtStartTime" runat="server" Width="100%" DateTime='<%# CType(Container, AppointmentFormTemplateContainer).Start %>' DateOnError="Undo" AllowNull="false" EnableClientSideAPI="true">
+                                <ValidationSettings ErrorDisplayMode="ImageWithTooltip" ValidateOnLeave="false" EnableCustomValidation="True" Display="Dynamic"
+                                    ValidationGroup="DateValidatoinGroup">
+                                </ValidationSettings>
+                            </dx:ASPxTimeEdit>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="dxscSingleCell">
+                <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                    <tr>
+                        <td class="dxscLabelCell" style="padding-left: 25px;">
+                            <dx:ASPxLabel runat="server" ID="lblEndDate" Wrap="false" AssociatedControlID="edtEndDate" />
+                        </td>
+                        <td class="dxscControlCell">
+                            <dx:ASPxDateEdit ID="edtEndDate" runat="server" Date='<%# CType(Container, AppointmentFormTemplateContainer).End %>' EditFormat="Date" Width="100%" DateOnError="Undo" AllowNull="false" EnableClientSideAPI="true">
+                                <ValidationSettings ErrorDisplayMode="ImageWithTooltip" ValidateOnLeave="false" EnableCustomValidation="True" Display="Dynamic"
+                                    ValidationGroup="DateValidatoinGroup">
+                                </ValidationSettings>
+                            </dx:ASPxDateEdit>
+                        </td>
+                        <td class="dxscControlCell" id="edtEndTimeLayoutRoot" style="padding-left: 5px;">
+                            <dx:ASPxTimeEdit ID="edtEndTime" runat="server" Width="100%" DateTime='<%# CType(Container, AppointmentFormTemplateContainer).End %>' DateOnError="Undo" AllowNull="false" EnableClientSideAPI="true" HelpTextSettings-PopupMargins-MarginLeft="50">
+                                <ValidationSettings ErrorDisplayMode="ImageWithTooltip" ValidateOnLeave="false" EnableCustomValidation="True" Display="Dynamic"
+                                    ValidationGroup="DateValidatoinGroup">
+                                </ValidationSettings>
+                            </dx:ASPxTimeEdit>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <% If TimeZonesEnabled Then %>
+        <tr>
+            <td class="dxscSingleCell">
+                <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                    <tr>
+                        <td class="dxscLabelCell">
+                            <dx:ASPxLabel ID="lblTimeZone" runat="server" AssociatedControlID="cbTimeZone" Wrap="false">
+                            </dx:ASPxLabel>
+                        </td>
+                        <td class="dxscControlCell">
+                            <dx:ASPxComboBox ClientInstanceName="_dx" ID="cbTimeZone" runat="server" Width="100%" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <% End If %>
+        <tr>
+            <td class="dxscSingleCell">
+                <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                    <tr>
+                        <td class="dxscLabelCell">
+                            <dx:ASPxLabel ID="lblStatus" runat="server" AssociatedControlID="edtStatus" Wrap="false">
+                            </dx:ASPxLabel>
+                        </td>
+                        <td class="dxscControlCell">
+                            <dx:ASPxComboBox ClientInstanceName="_dx" ID="edtStatus" runat="server" Width="100%" DataSource='<%# CType(Container, AppointmentFormTemplateContainer).StatusDataSource %>' />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="dxscSingleCell" style="padding-left: 22px;">
+                <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                    <tr>
+                        <td style="width: 20px; height: 20px;">
+                            <dx:ASPxCheckBox ClientInstanceName="_dx" ID="chkAllDay" runat="server" Checked='<%# CType(Container, AppointmentFormTemplateContainer).Appointment.AllDay %>'>
+                            </dx:ASPxCheckBox>
+                        </td>
+                        <td style="padding-left: 2px;">
+                            <dx:ASPxLabel ID="lblAllDay" runat="server" AssociatedControlID="chkAllDay" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <% If CanShowReminders Then %>
+            <td class="dxscSingleCell">
+                <% Else %>
+            <td class="dxscDoubleCell" colspan="2">
+                <% End If %>
+                <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                    <tr>
+                        <td class="dxscLabelCell">
+                            <dx:ASPxLabel ID="lblResource" runat="server" AssociatedControlID="edtResource">
+                            </dx:ASPxLabel>
+                        </td>
+                        <td class="dxscControlCell">
+                            <% If ResourceSharing Then %>
+                            <dx:ASPxDropDownEdit ID="ddResource" runat="server" Width="100%" ClientInstanceName="ddResource" Enabled='<%# CType(Container, AppointmentFormTemplateContainer).CanEditResource %>' AllowUserInput="false">
+                                <DropDownWindowTemplate>
+                                    <dx:ASPxListBox ID="edtMultiResource" runat="server" Width="100%" SelectionMode="CheckColumn" DataSource='<%# ResourceDataSource %>' Border-BorderWidth="0" />
+                                </DropDownWindowTemplate>
+                            </dx:ASPxDropDownEdit>
+                            <% Else %>
+                            <dx:ASPxComboBox ClientInstanceName="_dx" ID="edtResource" runat="server" Width="100%" DataSource='<%# ResourceDataSource %> ' Enabled='<%# CType(Container, AppointmentFormTemplateContainer).CanEditResource %>' />
+                            <% End If %>             
+    </td>
 
-                </tr>
-            </table>
-        </td>
-<% if(CanShowReminders) { %>
-        <td class="dxscSingleCell">
-            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                <tr>
-                    <td class="dxscLabelCell" style="padding-left: 22px;">
-                        <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %>>
-                            <tr>
-                                <td style="width: 20px; height: 20px;">
-                                    <dx:ASPxCheckBox ID="chkReminder" runat="server"> 
-                                    </dx:ASPxCheckBox>
-                                </td>
-                                <td style="padding-left: 2px;">
-                                    <dx:ASPxLabel ID="lblReminder" runat="server" AssociatedControlID="chkReminder" />
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td class="dxscControlCell" style="padding-left: 3px">
-                        <dx:ASPxComboBox  ID="cbReminder" runat="server" Width="100%" DataSource='<%# ((AppointmentFormTemplateContainer)Container).ReminderDataSource %>' />
-                    </td>
-                </tr>
-            </table>
-        </td>
-<% } %>
-    </tr>
-    <tr>
-        <td class="dxscDoubleCell" colspan="2" style="height: 90px;">
-            <dx:ASPxMemo ClientInstanceName="_dx" ID="tbDescription" runat="server" Width="100%" Rows="6" Text='<%# ((AppointmentFormTemplateContainer)Container).Appointment.Description %>' />
-        </td>
-    </tr>
-</table>
+                    </tr>
+                </table>
+            </td>
+            <% If CanShowReminders Then %>
+            <td class="dxscSingleCell">
+                <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                    <tr>
+                        <td class="dxscLabelCell" style="padding-left: 22px;">
+                            <table class="dxscLabelControlPair" <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %>>
+                                <tr>
+                                    <td style="width: 20px; height: 20px;">
+                                        <dx:ASPxCheckBox ID="chkReminder" runat="server">
+                                        </dx:ASPxCheckBox>
+                                    </td>
+                                    <td style="padding-left: 2px;">
+                                        <dx:ASPxLabel ID="lblReminder" runat="server" AssociatedControlID="chkReminder" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="dxscControlCell" style="padding-left: 3px">
+                            <dx:ASPxComboBox ID="cbReminder" runat="server" Width="100%" DataSource='<%# CType(Container, AppointmentFormTemplateContainer).ReminderDataSource %>' />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <% End If %>
+        </tr>
+        <tr>
+            <td class="dxscDoubleCell" colspan="2" style="height: 90px;">
+                <dx:ASPxMemo ClientInstanceName="_dx" ID="tbDescription" runat="server" Width="100%" Rows="6" Text='<%# CType(Container, AppointmentFormTemplateContainer).Appointment.Description %>' />
+            </td>
+        </tr>
+    </table>
 </div>
-                        
+
 <dxsc:AppointmentRecurrenceForm ID="AppointmentRecurrenceForm1" runat="server"
-    IsRecurring='<%# ((AppointmentFormTemplateContainer)Container).Appointment.IsRecurring %>' 
-    DayNumber='<%# ((AppointmentFormTemplateContainer)Container).RecurrenceDayNumber %>' 
-    End='<%# ((AppointmentFormTemplateContainer)Container).RecurrenceEnd %>' 
-    Month='<%# ((AppointmentFormTemplateContainer)Container).RecurrenceMonth %>' 
-    OccurrenceCount='<%# ((AppointmentFormTemplateContainer)Container).RecurrenceOccurrenceCount %>' 
-    Periodicity='<%# ((AppointmentFormTemplateContainer)Container).RecurrencePeriodicity %>' 
-    RecurrenceRange='<%# ((AppointmentFormTemplateContainer)Container).RecurrenceRange %>' 
-    Start='<%# ((AppointmentFormTemplateContainer)Container).RecurrenceStart %>' 
-    WeekDays='<%# ((AppointmentFormTemplateContainer)Container).RecurrenceWeekDays %>' 
-    WeekOfMonth='<%# ((AppointmentFormTemplateContainer)Container).RecurrenceWeekOfMonth %>' 
-    RecurrenceType='<%# ((AppointmentFormTemplateContainer)Container).RecurrenceType %>'
-    IsFormRecreated='<%# ((AppointmentFormTemplateContainer)Container).IsFormRecreated %>' >
+    IsRecurring='<%# CType(Container, AppointmentFormTemplateContainer).Appointment.IsRecurring %>'
+    DayNumber='<%# CType(Container, AppointmentFormTemplateContainer).RecurrenceDayNumber %>'
+    End='<%# CType(Container, AppointmentFormTemplateContainer).RecurrenceEnd %>'
+    Month='<%# CType(Container, AppointmentFormTemplateContainer).RecurrenceMonth %>'
+    OccurrenceCount='<%# CType(Container, AppointmentFormTemplateContainer).RecurrenceOccurrenceCount %>'
+    Periodicity='<%# CType(Container, AppointmentFormTemplateContainer).RecurrencePeriodicity %>'
+    RecurrenceRange='<%# CType(Container, AppointmentFormTemplateContainer).RecurrenceRange %>'
+    Start='<%# CType(Container, AppointmentFormTemplateContainer).RecurrenceStart %>'
+    WeekDays='<%# CType(Container, AppointmentFormTemplateContainer).RecurrenceWeekDays %>'
+    WeekOfMonth='<%# CType(Container, AppointmentFormTemplateContainer).RecurrenceWeekOfMonth %>'
+    RecurrenceType='<%# CType(Container, AppointmentFormTemplateContainer).RecurrenceType %>'
+    IsFormRecreated='<%# CType(Container, AppointmentFormTemplateContainer).IsFormRecreated %>'>
 </dxsc:AppointmentRecurrenceForm>
-                   
-<table <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %> style="width: 100%; height: 35px;">
+
+<table <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %> style="width: 100%; height: 35px;">
     <tr>
-        <td class="dx-ac" style="width: 100%; height: 100%;" <%= DevExpress.Web.Internal.RenderUtils.GetAlignAttributes(this, "center", null) %>>
+        <td class="dx-ac" style="width: 100%; height: 100%" <%= DevExpress.Web.Internal.RenderUtils.GetAlignAttributes(Me, "center", Nothing) %>>
             <table class="dxscButtonTable" style="height: 100%">
                 <tr>
                     <td class="dxscCellWithPadding">
-                        <dx:ASPxButton runat="server" ID="btnOk" UseSubmitBehavior="false" AutoPostBack="false" 
-                            EnableViewState="false" Width="91px" EnableClientSideAPI="true"/>
+                        <dx:ASPxButton runat="server" ID="btnOk" UseSubmitBehavior="false" AutoPostBack="false"
+                            EnableViewState="false" Width="91px" EnableClientSideAPI="true" />
                     </td>
                     <td class="dxscCellWithPadding">
-                        <dx:ASPxButton runat="server" ID="btnCancel" UseSubmitBehavior="false" AutoPostBack="false" EnableViewState="false" 
+                        <dx:ASPxButton runat="server" ID="btnCancel" UseSubmitBehavior="false" AutoPostBack="false" EnableViewState="false"
                             Width="91px" CausesValidation="False" EnableClientSideAPI="true" />
                     </td>
                     <td class="dxscCellWithPadding">
                         <dx:ASPxButton runat="server" ID="btnDelete" UseSubmitBehavior="false"
                             AutoPostBack="false" EnableViewState="false" Width="91px"
-                            Enabled='<%# ((AppointmentFormTemplateContainer)Container).CanDeleteAppointment %>'
+                            Enabled='<%# CType(Container, AppointmentFormTemplateContainer).CanDeleteAppointment %>'
                             CausesValidation="False" />
                     </td>
                 </tr>
@@ -255,10 +255,10 @@
         </td>
     </tr>
 </table>
-<table <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(this, 0, 0) %> style="width: 100%;">
+<table <%= DevExpress.Web.Internal.RenderUtils.GetTableSpacings(Me, 0, 0) %> style="width: 100%;">
     <tr>
-        <td class="dx-al" style="width: 100%;"  <%= DevExpress.Web.Internal.RenderUtils.GetAlignAttributes(this, "left", null) %>>
-            <dxsc:ASPxSchedulerStatusInfo runat="server" ID="schedulerStatusInfo" Priority="1" MasterControlId='<%# ((DevExpress.Web.ASPxScheduler.AppointmentFormTemplateContainer)Container).ControlId %>' />
+        <td class="dx-al" style="width: 100%" <%= DevExpress.Web.Internal.RenderUtils.GetAlignAttributes(Me, "left", Nothing) %>>
+            <dxsc:ASPxSchedulerStatusInfo runat="server" ID="schedulerStatusInfo" Priority="1" MasterControlID='<%# CType(Container, DevExpress.Web.ASPxScheduler.AppointmentFormTemplateContainer).ControlId %>' />
         </td>
     </tr>
 </table>
