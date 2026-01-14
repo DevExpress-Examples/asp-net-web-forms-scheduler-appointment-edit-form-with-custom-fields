@@ -37,7 +37,8 @@ Partial Public Class AppointmentDragToolTip
 		lblInfo.Text = ASPxSchedulerLocalizer.GetString(ASPxSchedulerStringId.Caption_OperationToolTip)
 	End Sub
 	Protected Overrides Function GetChildControls() As Control()
-		Dim controls() As Control = { lblInterval }
-		Return controls
+'INSTANT VB NOTE: The variable controls was renamed since Visual Basic does not handle local variables named the same as class members well:
+		Dim controls_Conflict() As Control = { lblInterval }
+		Return controls_Conflict
 	End Function
 End Class

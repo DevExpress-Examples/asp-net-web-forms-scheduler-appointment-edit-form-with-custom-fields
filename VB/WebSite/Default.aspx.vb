@@ -24,12 +24,13 @@ Partial Public Class [Default]
 		e.ObjectInstance = Me.objectInstance
 	End Sub
 	Private Function GetCustomEvents() As CustomEventList
-		Dim events As CustomEventList = TryCast(Session("CustomEventListData"), CustomEventList)
-		If events Is Nothing Then
-			events = New CustomEventList()
-			Session("CustomEventListData") = events
+'INSTANT VB NOTE: The variable events was renamed since Visual Basic does not handle local variables named the same as class members well:
+		Dim events_Conflict As CustomEventList = TryCast(Session("CustomEventListData"), CustomEventList)
+		If events_Conflict Is Nothing Then
+			events_Conflict = New CustomEventList()
+			Session("CustomEventListData") = events_Conflict
 		End If
-		Return events
+		Return events_Conflict
 	End Function
 	#End Region ' #setappointment
 
